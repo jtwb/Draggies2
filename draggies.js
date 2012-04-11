@@ -1,4 +1,8 @@
 if (Meteor.is_client) {
+  Template.draggie.content = function () {
+    return "x";
+  };
+
   Template.hello.greeting = function () {
     return "Welcome to draggies.";
   };
