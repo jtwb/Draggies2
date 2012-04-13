@@ -1,0 +1,29 @@
+
+<template name="draggieset">
+  {{#each draggies}}
+    {{> draggie}}
+  {{/each}}
+</template>
+
+<template name="draggie">
+  <div class="draggie well" id="{{_id}}"
+    {{#with pos}}
+      style="left: {{x}}px; top: {{y}}px">
+    {{/with}}
+    <h1><input class="active" type="text" maxlength="1" value="{{value}}"/></h1>
+  </div>
+</template>
+
+<template name="controlpanel">
+  <li class="active">
+    <a href="#" class="new-draggie">New</a>
+  </li>
+</template>
+
+<template name="hello">
+  <div class="hello">
+    <h1>Hello World!</h1>
+    {{greeting}}
+    <input type="button" value="Click" />
+  </div>
+</template>
