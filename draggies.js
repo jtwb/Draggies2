@@ -38,15 +38,26 @@ if (Meteor.is_client) {
       return Draggies.find({});
   };
 
-  Template.controlpanel.events = {
-      'click .new-draggie' : function() {
-          Draggies.insert(new_draggie_prototype());
+  Template.draggie.events = {
+      'click' : function(e) {
+          var body = $('body');
+          if (body.hasClass('kill-mode')) {
+              body.removeClass('kill-mode');
+              Draggies.remove(this._id);
+          }
+      },
+      'blur input' : function(e) {
+          Draggies.update(this._id, {$set: {value: $(e.target).val() } });
       }
   };
 
-  Template.draggie.events = {
-      'blur input' : function(e) {
-          Draggies.update(this._id, {$set: {value: $(e.target).val() } });
+  Template.controlpanel.events = {
+      'click .new-draggie' : function() {
+          Draggies.insert(new_draggie_prototype());
+      },
+      'click .kill-draggie' : function() {
+          Session.set('kill-mode');
+          $('body').addClass('kill-mode');
       }
   };
 }
